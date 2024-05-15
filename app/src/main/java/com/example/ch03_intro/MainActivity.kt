@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -43,6 +44,12 @@ fun CheckBoxEx() {
     ) {
         // Step 1: Create Checkbox - checked 속성은 false
         // onCheckedChange 는 비워둡시다
+        Checkbox(
+            checked = false,
+            onCheckedChange = { // 바뀔 때 로직
+                //
+            }
+        )
 
         // Step 2: onCheckedChange 에서 boolean 값 변수를 바꾸고
         // checked 에서 그 값을 반영해봅시다(잘 되지 않습니다)
