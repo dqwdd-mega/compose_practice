@@ -53,17 +53,35 @@ fun Greeting() {
 
         // Step 2: Text 에 Android 대신 TextField 입력을
         // 출력하게 합시다. mutableStateOf("") 필드를 하나 만듭시다.
+//        TextField(
+//            value = name,
+//            onValueChange = {
+//                name = it
+//            }
+//        )
+
+        // Step 3: TextField 에 label 을 추가합시다.
+        // 내용에는 'Text("Name)'을 채워봅시다.
+//        TextField(
+//            value = name,
+//            label = {
+//                Text(text = "rladlkim name")
+//            },
+//            onValueChange = {
+//                name = it
+//            }
+//        )
+
+        // Step 4: TextField 와 Text 사이에 Spacer 를 넣어 8.에 간격을 줍시다
         TextField(
             value = name,
+            label = {
+                Text(text = "rladlkim name")
+            },
             onValueChange = {
                 name = it
             }
         )
-
-        // Step 3: TextField 에 label 을 추가합시다.
-        // 내용에는 'Text("Name)'을 채워봅시다.
-
-        // Step 4: TextField 와 Text 사이에 Spacer 를 넣어 8.에 간격을 줍시다
 
         // Step 5: TextField 를 OutlinedTextField 로 변경해봅시다
 
