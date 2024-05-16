@@ -11,8 +11,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -65,15 +67,25 @@ fun CheckBoxEx() {
 
         // Step 3: boolean 대신 remember { mutableStateOf(false) }를
         // 사용하여 상태를 도입합시다(value 프로퍼티를 이용해야 합니다)
-        val checked = remember { mutableStateOf(false) }
-        Checkbox(
-            checked = checked.value,
-            onCheckedChange = { // 바뀔 때 로직
-                checked.value = !checked.value
-            }
-        )
+//        val checked = remember { mutableStateOf(false) }
+//        Checkbox(
+//            checked = checked.value,
+//            onCheckedChange = { // 바뀔 때 로직
+//                checked.value = !checked.value
+//            }
+//        )
 
         // Step 4: delegated properties 로 변경해봅시다
+        // 위임된 속성
+        // checked 가 프로퍼티인 것처럼 사용할 수 있다
+        // by 를 써서, check 가 mutableStateOf 값에 .value 를 붙인 값인 것마냥~
+        var checked by remember { mutableStateOf(false) }
+        Checkbox(
+            checked = checked,
+            onCheckedChange = { // 바뀔 때 로직
+                checked = !checked
+            }
+        )
 
         // Step 5: destruction 으로 상태를 받아서 사용해봅시다
 
