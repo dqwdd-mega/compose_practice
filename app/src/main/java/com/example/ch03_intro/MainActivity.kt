@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -75,7 +76,20 @@ fun Greeting() {
 //        )
 
         // Step 4: TextField 와 Text 사이에 Spacer 를 넣어 8.에 간격을 줍시다
-        TextField(
+//        TextField(
+//            value = name,
+//            label = {
+//                Text(text = "rladlkim name")
+//            },
+//            onValueChange = {
+//                name = it
+//            }
+//        )
+//        Spacer(modifier = Modifier.size(8.dp))
+
+        // Step 5: TextField 를 OutlinedTextField 로 변경해봅시다
+        // 변경하면, xml 의 EditText 처럼 생겼다~
+        OutlinedTextField(
             value = name,
             label = {
                 Text(text = "rladlkim name")
@@ -85,8 +99,6 @@ fun Greeting() {
             }
         )
         Spacer(modifier = Modifier.size(8.dp))
-
-        // Step 5: TextField 를 OutlinedTextField 로 변경해봅시다
 
         Text(text = "Hello $name")
     }
