@@ -3,22 +3,19 @@ package com.example.ch03_intro
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Checkbox
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.ch03_intro.ui.theme.Ch03IntroTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,77 +28,44 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    Greeting("zzzzzzzzzzz")
-                    Column {
-                        CheckBoxEx()
-                    }
+                    Greeting()
+//                    Column {
+//                        TextFieldTheme()
+//                    }
                 }
             }
         }
     }
-
 }
 
 @Composable
-fun CheckBoxEx() {
+fun Greeting() {
+    Column(modifier = Modifier.padding(16.dp)) {
+        // Step 1: TextField 를 Text 위에 만듭니다
+        // value 와 onValueChanged 는 비워둡시다
+//        TextField(value = "Tom", onValueChange = {})
+
+        // Step 2: Text 에 Android 대신 TextField 입력을
+        // 출력하게 합시다. mutableStateOf("") 필드를 하나 만듭시다.
+
+        // Step 3: TextField 에 label 을 추가합시다.
+        // 내용에는 'Text("Name)'을 채워봅시다.
+
+        // Step 4: TextField 와 Text 사이에 Spacer 를 넣어 8.에 간격을 줍시다
+
+        // Step 5: TextField 를 OutlinedTextField 로 변경해봅시다
+
+        Text(text = "Hello Android")
+    }
+}
+
+@Composable
+fun TextFieldTheme() {
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Step 1: Create Checkbox - checked 속성은 false
-        // onCheckedChange 는 비워둡시다
-//        Checkbox(
-//            checked = false,
-//            onCheckedChange = { // 바뀔 때 로직
-
-//            }
-//        )
-
-        // Step 2: onCheckedChange 에서 boolean 값 변수를 바꾸고
-        // checked 에서 그 값을 반영해봅시다(잘 되지 않습니다)
-//        var checked = false
-//        Checkbox(
-//            checked = checked,
-//            onCheckedChange = { // 바뀔 때 로직
-//                checked = !checked
-//            }
-//        )
-
-        // Step 3: boolean 대신 remember { mutableStateOf(false) }를
-        // 사용하여 상태를 도입합시다(value 프로퍼티를 이용해야 합니다)
-//        val checked = remember { mutableStateOf(false) }
-//        Checkbox(
-//            checked = checked.value,
-//            onCheckedChange = { // 바뀔 때 로직
-//                checked.value = !checked.value
-//            }
-//        )
-
-        // Step 4: delegated properties 로 변경해봅시다
-        // 위임된 속성
-        // checked 가 프로퍼티인 것처럼 사용할 수 있다
-        // by 를 써서, check 가 mutableStateOf 값에 .value 를 붙인 값인 것마냥~
-//        var checked by remember { mutableStateOf(false) }
-//        Checkbox(
-//            checked = checked,
-//            onCheckedChange = { // 바뀔 때 로직
-//                checked = !checked
-//            }
-//        )
-
-        // Step 5: destruction 으로 상태를 받아서 사용해봅시다
-        val (checked, setChecked) = remember { mutableStateOf(false) }
-        Checkbox(
-            checked = checked,
-            onCheckedChange = setChecked
-        )
-
-
-        // Checkbox 를 앞에 넣어주세요
         Text(
-            text = "프로그래머입니까?",
-            modifier = Modifier.clickable {
-                setChecked(!checked)
-            }
+            text = "Hello Android"
         )
     }
 }
@@ -111,6 +75,6 @@ fun CheckBoxEx() {
 @Composable
 fun GreetingPreview() {
     Row {
-        CheckBoxEx()
+        TextFieldTheme()
     }
 }
