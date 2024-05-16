@@ -3,6 +3,7 @@ package com.example.ch03_intro
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -79,19 +80,28 @@ fun CheckBoxEx() {
         // 위임된 속성
         // checked 가 프로퍼티인 것처럼 사용할 수 있다
         // by 를 써서, check 가 mutableStateOf 값에 .value 를 붙인 값인 것마냥~
-        var checked by remember { mutableStateOf(false) }
-        Checkbox(
-            checked = checked,
-            onCheckedChange = { // 바뀔 때 로직
-                checked = !checked
-            }
-        )
+//        var checked by remember { mutableStateOf(false) }
+//        Checkbox(
+//            checked = checked,
+//            onCheckedChange = { // 바뀔 때 로직
+//                checked = !checked
+//            }
+//        )
 
         // Step 5: destruction 으로 상태를 받아서 사용해봅시다
+        val (checked, setChecked) = remember { mutableStateOf(false) }
+        Checkbox(
+            checked = checked,
+            onCheckedChange = setChecked
+        )
+
 
         // Checkbox 를 앞에 넣어주세요
         Text(
-            text = "프로그래머입니까?"
+            text = "프로그래머입니까?",
+            modifier = Modifier.clickable {
+                setChecked(!checked)
+            }
         )
     }
 }
