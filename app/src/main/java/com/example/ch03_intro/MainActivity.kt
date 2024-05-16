@@ -12,6 +12,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,6 +45,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting() {
+    var name by remember { mutableStateOf("Tom") }
     Column(modifier = Modifier.padding(16.dp)) {
         // Step 1: TextField 를 Text 위에 만듭니다
         // value 와 onValueChanged 는 비워둡시다
@@ -47,6 +53,12 @@ fun Greeting() {
 
         // Step 2: Text 에 Android 대신 TextField 입력을
         // 출력하게 합시다. mutableStateOf("") 필드를 하나 만듭시다.
+        TextField(
+            value = name,
+            onValueChange = {
+                name = it
+            }
+        )
 
         // Step 3: TextField 에 label 을 추가합시다.
         // 내용에는 'Text("Name)'을 채워봅시다.
@@ -55,7 +67,7 @@ fun Greeting() {
 
         // Step 5: TextField 를 OutlinedTextField 로 변경해봅시다
 
-        Text(text = "Hello Android")
+        Text(text = "Hello $name")
     }
 }
 
