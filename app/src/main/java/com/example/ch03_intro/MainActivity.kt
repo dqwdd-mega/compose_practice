@@ -17,8 +17,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -124,18 +126,19 @@ class MainActivity : ComponentActivity() {
 // 인자에서 MutableState 대신 boolean 값으로 변경합시다.
 @Composable
 fun CheckBoxWithSlotAPI(
-    checked: MutableState<Boolean>,
+    checked: Boolean,
+    onCheckedChanged: () -> Unit,
     content: @Composable RowScope.() -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.clickable {
-            checked.value = !checked.value
+            onCheckedChanged()
         }
     ) {
         Checkbox(
-            checked = checked.value,
-            onCheckedChange = { checked.value = it }
+            checked = checked,
+            onCheckedChange = { onCheckedChanged() }
         )
         content()
     }
@@ -143,40 +146,23 @@ fun CheckBoxWithSlotAPI(
 
 @Composable
 fun SlotEx() {
-    val checked1 = remember { mutableStateOf(false) }
-    val checked2 = remember { mutableStateOf(false) }
+    // by 를 사용하여 위임된 프로퍼티를 사용하기
+    // mutableStateOf 를 타고 타고 가면, 게터 세터가 있는데
+    // by 를 쓰면 그런 것들은 위임된 프로퍼티처럼 사용할 수 있다(.value 안 쓰고)
+    var checked1 by remember { mutableStateOf(false) }
+    var checked2 by remember { mutableStateOf(false) }
 
     Column {
-//        Row(
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            Checkbox(
-//                checked = checked1.value,
-//                onCheckedChange = { checked1.value = it }
-//            )
-//            Text(
-//                text = "텍스트-1",
-//                modifier = Modifier.clickable { checked1.value = !checked1.value }
-//            )
-//        }
-
-//        Row(
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            Checkbox(
-//                checked = checked2.value,
-//                onCheckedChange = { checked2.value = it }
-//            )
-//            Text(
-//                text = "텍스트-2",
-//                modifier = Modifier.clickable { checked2.value = !checked2.value }
-//            )
-//        }
-
-        CheckBoxWithSlotAPI(checked1) {
-            Text("텍스트-11", modifier = Modifier.align(Alignment.CenterVertically))
+        CheckBoxWithSlotAPI(
+            checked = checked1,
+            onCheckedChanged = { checked1 = !checked1 }
+        ) {
+            Text("텍스트-11")
         }
-        CheckBoxWithSlotAPI(checked2) {
+        CheckBoxWithSlotAPI(
+            checked = checked2,
+            onCheckedChanged = { checked2 = !checked2 }
+        ) {
             Text("텍스트-22")
         }
     }
