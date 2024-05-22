@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.ch03_intro
 
 import android.os.Bundle
@@ -6,9 +8,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +39,9 @@ class MainActivity : ComponentActivity() {
 fun TopBarEx(name: String) {
     Column {
         // Step 1: TopAppBar 를 만들고 title 항목을 채워봅시다
+        TopAppBar(title = {
+            Text(text = "TopAbbBar")
+        })
 
         // Step 2: navigationIcon 파라미터를 채워봅시다
         // IconButton 을 만들고 자식으로 Icon 을 넣읍시다
