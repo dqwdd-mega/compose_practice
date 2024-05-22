@@ -51,6 +51,9 @@ fun TopBarEx(name: String) {
         // IconButton 을 만들고 자식으로 Icon 을 넣읍시다
         // 아이콘은 Icons.Filled.ArrowBack 을 채웁시다.
         // onClick 은 비워둡시다.
+
+        // Step 3: actions 를 추가해봅시다.
+        // Icons.Filled 의 여러 아이콘을 이용해봅시다.
         TopAppBar(
             title = { Text(text = "TopAbbBar") },
             navigationIcon = {
@@ -60,11 +63,28 @@ fun TopBarEx(name: String) {
                         contentDescription = "업 navigation"
                     )
                 }
+            },
+            actions = {
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Filled.Search,
+                        contentDescription = "검색"
+                    )
+                }
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Filled.Settings,
+                        contentDescription = "설정"
+                    )
+                }
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Filled.AccountBox,
+                        contentDescription = "계정"
+                    )
+                }
             }
         )
-
-        // Step 3: actions 를 추가해봅시다.
-        // Icons.Filled 의 여러 아이콘을 이용해봅시다.
 
         // Step 4: TopAppBar content 파라미터 버전을 만들어봅시다.
 
