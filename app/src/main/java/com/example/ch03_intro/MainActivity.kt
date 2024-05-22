@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -62,6 +63,7 @@ fun CheckboxWithContent(
             checked = checked,
             onCheckedChange = { toggleState() }
         )
+        content()
     }
 }
 
@@ -85,12 +87,24 @@ fun ScaffoldEx() {
                 },
                 title = { Text("Scaffold APp") }
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {}) {
+            }
         }
-    ) {
+    ) { innerPadding ->
         Surface(
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(8.dp)
         ) {
             // Step 2: 아래에 CheckboxWithContent 를 넣어봅시다.
+            CheckboxWithContent(
+                checked = checked,
+                toggleState = { checked = !checked }
+            ) {
+                Text(text = "ii like compose~~")
+            }
         }
     }
 }
