@@ -87,13 +87,47 @@ fun TopBarEx(name: String) {
         )
 
         // Step 4: TopAppBar content 파라미터 버전을 만들어봅시다.
+        TopAppBar(
+            title = {
+                Text(
+                    text = "TopAppBar",
+                    modifier = Modifier.weight(1f)
+                ) },
+            navigationIcon = {
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "업 navigation"
+                    )
+                }
+            },
+            actions = {
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Filled.Search,
+                        contentDescription = "검색"
+                    )
+                }
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Filled.Settings,
+                        contentDescription = "설정"
+                    )
+                }
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Filled.AccountBox,
+                        contentDescription = "계정"
+                    )
+                }
+            }
+        )
 
         Text(
             text = name
         )
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
