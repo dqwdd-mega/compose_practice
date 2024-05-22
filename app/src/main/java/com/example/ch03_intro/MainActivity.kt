@@ -5,25 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.ch03_intro.ui.theme.Ch03IntroTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,15 +20,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Ch03IntroTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting()
-//                    Column {
-//                        TextFieldTheme()
-//                    }
+                    TopBarEx("Android")
                 }
             }
         }
@@ -47,70 +32,22 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting() {
-    var name by remember { mutableStateOf("Tom") }
-    Column(modifier = Modifier.padding(16.dp)) {
-        // Step 1: TextField 를 Text 위에 만듭니다
-        // value 와 onValueChanged 는 비워둡시다
-//        TextField(value = "Tom", onValueChange = {})
+fun TopBarEx(name: String) {
+    Column {
+        // Step 1: TopAppBar 를 만들고 title 항목을 채워봅시다
 
-        // Step 2: Text 에 Android 대신 TextField 입력을
-        // 출력하게 합시다. mutableStateOf("") 필드를 하나 만듭시다.
-//        TextField(
-//            value = name,
-//            onValueChange = {
-//                name = it
-//            }
-//        )
+        // Step 2: navigationIcon 파라미터를 채워봅시다
+        // IconButton 을 만들고 자식으로 Icon 을 넣읍시다
+        // 아이콘은 Icons.Filled.ArrowBack 을 채웁시다.
+        // onClick 은 비워둡시다.
 
-        // Step 3: TextField 에 label 을 추가합시다.
-        // 내용에는 'Text("Name)'을 채워봅시다.
-//        TextField(
-//            value = name,
-//            label = {
-//                Text(text = "rladlkim name")
-//            },
-//            onValueChange = {
-//                name = it
-//            }
-//        )
+        // Step 3: actions 를 추가해봅시다.
+        // Icons.Filled 의 여러 아이콘을 이용해봅시다.
 
-        // Step 4: TextField 와 Text 사이에 Spacer 를 넣어 8.에 간격을 줍시다
-//        TextField(
-//            value = name,
-//            label = {
-//                Text(text = "rladlkim name")
-//            },
-//            onValueChange = {
-//                name = it
-//            }
-//        )
-//        Spacer(modifier = Modifier.size(8.dp))
+        // Step 4: TopAppBar content 파라미터 버전을 만들어봅시다.
 
-        // Step 5: TextField 를 OutlinedTextField 로 변경해봅시다
-        // 변경하면, xml 의 EditText 처럼 생겼다~
-        OutlinedTextField(
-            value = name,
-            label = {
-                Text(text = "rladlkim name")
-            },
-            onValueChange = {
-                name = it
-            }
-        )
-        Spacer(modifier = Modifier.size(8.dp))
-
-        Text(text = "Hello $name")
-    }
-}
-
-@Composable
-fun TextFieldTheme() {
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
         Text(
-            text = "Hello Android"
+            text = name
         )
     }
 }
@@ -118,8 +55,13 @@ fun TextFieldTheme() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    Row {
-        TextFieldTheme()
+fun MyPreview() {
+    Ch03IntroTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            TopBarEx("Android")
+        }
     }
 }
