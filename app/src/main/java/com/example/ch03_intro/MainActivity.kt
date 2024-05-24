@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -74,6 +75,15 @@ fun Item(itemData: ItemData) {
 fun CatalogEx(itemList: List<ItemData>) {
     LazyColumn {
         // Step 2: 'items(itemList)' 를 이용해 Item 을 반복해서 컬럼에 추가하세요
+
+        // 내가 따로 데이터를 넣고 싶으면 이렇게 하면 된다
+        item {
+            Item(itemList[1])
+        }
+
+        items(itemList) { item ->
+            Item(item)
+        }
     }
 }
 
@@ -110,5 +120,10 @@ val items = listOf(
         imageId = R.drawable.a1,
         title = "김해변",
         description = "김설명"
+    ),
+    ItemData(
+        imageId = R.drawable.a1,
+        title = "김해변22",
+        description = "김설명22"
     )
 )
