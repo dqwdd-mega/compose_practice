@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -48,6 +49,7 @@ fun ConstraintLayoutEx() {
                 .size(40.dp)
                 .background(Color.Red)
                 .constrainAs(redBox) {
+                    top.linkTo(parent.top, margin = 18.dp)
                 }
         )
         Box(
@@ -55,6 +57,7 @@ fun ConstraintLayoutEx() {
                 .size(40.dp)
                 .background(Color.Yellow)
                 .constrainAs(yellowBox) {
+                    top.linkTo(parent.top, margin = 64.dp)
                 }
         )
         Box(
@@ -62,6 +65,7 @@ fun ConstraintLayoutEx() {
                 .size(40.dp)
                 .background(Color.Magenta)
                 .constrainAs(magentaBox) {
+                    top.linkTo(parent.top, margin = 32.dp)
                 }
         )
 
@@ -74,6 +78,17 @@ fun ConstraintLayoutEx() {
             chainStyle = ChainStyle.SpreadInside
 //            chainStyle = ChainStyle.Packed
 //            chainStyle = ChainStyle.SpreadInside
+        )
+
+        // Step 4
+        val barrier = createBottomBarrier(redBox, yellowBox, magentaBox)
+
+        // Step 5
+        Text(
+            text = "에에에ㅔㅇ에ㅔ에에ㅔㅔㅔㅔㅔㅔ",
+            modifier = Modifier.constrainAs(text) {
+                top.linkTo(barrier)
+            }
         )
     }
 }
