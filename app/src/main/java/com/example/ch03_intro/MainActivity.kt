@@ -45,6 +45,11 @@ fun ConstraintSetEx() {
         val magentaBox = createRefFor("magentaBox")
         val greenBox = createRefFor("greenBox")
         val yellowBox = createRefFor("yellowBox")
+
+        constrain(redBox) {
+            bottom.linkTo(parent.bottom, 10.dp)
+            end.linkTo(parent.end, 30.dp)
+        }
     }
 
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
@@ -56,8 +61,8 @@ fun ConstraintSetEx() {
                 .size(40.dp)
                 .background(Color.Red)
                 .constrainAs(redBox) {
-                    bottom.linkTo(parent.bottom, 10.dp)
-                    end.linkTo(parent.end, 30.dp)
+//                    bottom.linkTo(parent.bottom, 10.dp)
+//                    end.linkTo(parent.end, 30.dp)
                 }
         )
 
