@@ -15,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -66,14 +67,16 @@ fun ConstraintSetEx() {
         }
     }
 
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-//        val (redBox, magentaBox, greenBox, yellowBox) = createRefs()
+    ConstraintLayout(
+        constraintSet,
+        modifier = Modifier.fillMaxSize()) {
 
         // red
         Box(
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Red)
+                .layoutId("redBox")
         )
 
         // magenta
@@ -81,6 +84,7 @@ fun ConstraintSetEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Magenta)
+                .layoutId("magentaBox")
         )
 
         // green
@@ -88,6 +92,7 @@ fun ConstraintSetEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Green)
+                .layoutId("greenBox")
         )
 
         // yellow
@@ -95,6 +100,7 @@ fun ConstraintSetEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Yellow)
+                .layoutId("yellowBox")
         )
     }
 }
