@@ -63,6 +63,8 @@ fun ConstraintLayoutEx() {
                 .constrainAs(magentaBox) {
                 }
         )
+
+        createVerticalChain(redBox, yellowBox, magentaBox)
     }
 }
 
