@@ -46,6 +46,10 @@ fun ConstraintLayoutEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Red)
+                .constrainAs(redBox) {
+                    bottom.linkTo(parent.bottom, margin = 8.dp)
+                    end.linkTo(parent.end, margin = 4.dp)
+                }
         )
         Box(
             modifier = Modifier
