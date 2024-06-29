@@ -50,20 +50,30 @@ fun ConstraintSetEx() {
             bottom.linkTo(parent.bottom, 10.dp)
             end.linkTo(parent.end, 30.dp)
         }
+
+        constrain(magentaBox) {
+            start.linkTo(parent.start, 10.dp)
+            end.linkTo(parent.end, 30.dp)
+        }
+
+        constrain(greenBox) {
+            centerTo(parent)
+        }
+
+        constrain(yellowBox) {
+            start.linkTo(greenBox.end)
+            top.linkTo(greenBox.bottom)
+        }
     }
 
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (redBox, magentaBox, greenBox, yellowBox) = createRefs()
+//        val (redBox, magentaBox, greenBox, yellowBox) = createRefs()
 
         // red
         Box(
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Red)
-                .constrainAs(redBox) {
-//                    bottom.linkTo(parent.bottom, 10.dp)
-//                    end.linkTo(parent.end, 30.dp)
-                }
         )
 
         // magenta
@@ -71,10 +81,6 @@ fun ConstraintSetEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Magenta)
-                .constrainAs(magentaBox) {
-                    start.linkTo(parent.start, 10.dp)
-                    end.linkTo(parent.end, 30.dp)
-                }
         )
 
         // green
@@ -82,9 +88,6 @@ fun ConstraintSetEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Green)
-                .constrainAs(greenBox) {
-                    centerTo(parent)
-                }
         )
 
         // yellow
@@ -92,10 +95,6 @@ fun ConstraintSetEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Yellow)
-                .constrainAs(yellowBox) {
-                    start.linkTo(parent.start)
-                    top.linkTo(parent.top)
-                }
         )
     }
 }
