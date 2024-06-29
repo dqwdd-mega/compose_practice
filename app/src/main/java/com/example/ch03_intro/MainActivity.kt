@@ -18,18 +18,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.example.ch03_intro.ui.theme.ConstraintLayoutTheme
+import com.example.ch03_intro.ui.theme.ConstraintLayoutSet
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ConstraintLayoutTheme {
+            ConstraintLayoutSet {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ConstraintLayoutEx()
+                    ConstraintSetEx()
                 }
             }
         }
@@ -38,55 +38,54 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun ConstraintLayoutEx() {
+fun ConstraintSetEx() {
+    val constraintSet = ConstraintLayoutSet {
+        //
+    }
+
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (redBox, magentaBox, greenBox, yellowBox) = createRefs()
 
+        // red
         Box(
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Red)
                 .constrainAs(redBox) {
-                    bottom.linkTo(parent.bottom, margin = 8.dp)
-                    end.linkTo(parent.end, margin = 4.dp)
+                    bottom.linkTo(parent.bottom, 10.dp)
+                    end.linkTo(parent.end, 30.dp)
                 }
         )
+
+        // magenta
         Box(
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Magenta)
                 .constrainAs(magentaBox) {
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
+                    start.linkTo(parent.start, 10.dp)
+                    end.linkTo(parent.end, 30.dp)
                 }
         )
+
+        // green
         Box(
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Green)
                 .constrainAs(greenBox) {
-
-                    // 가운데로 오게 하고 싶다면? 아래처럼 linkTo로 사방에서 잡아당기게 하는 거 맑
-                    // centerTo를 사용해보자~
-
-//                    start.linkTo(parent.start)
-//                    end.linkTo(parent.end)
-//                    top.linkTo(parent.top)
-//                    bottom.linkTo(parent.bottom)
-
                     centerTo(parent)
-
-//                    centerHorizontallyTo(parent)
-//                    centerVerticallyTo(parent)
                 }
         )
+
+        // yellow
         Box(
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Yellow)
                 .constrainAs(yellowBox) {
-                    start.linkTo(magentaBox.end)
-                    top.linkTo(magentaBox.bottom)
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top)
                 }
         )
     }
@@ -95,7 +94,7 @@ fun ConstraintLayoutEx() {
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {
-    ConstraintLayoutTheme {
-        ConstraintLayoutEx()
+    ConstraintLayoutSet {
+        ConstraintSetEx()
     }
 }
