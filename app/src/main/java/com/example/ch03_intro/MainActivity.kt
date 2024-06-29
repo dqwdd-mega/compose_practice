@@ -84,6 +84,10 @@ fun ConstraintLayoutEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Yellow)
+                .constrainAs(yellowBox) {
+                    start.linkTo(magentaBox.end)
+                    top.linkTo(magentaBox.bottom)
+                }
         )
     }
 }
