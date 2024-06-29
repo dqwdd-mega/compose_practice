@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
 import com.example.ch03_intro.ui.theme.ConstraintLayoutSet
 
 class MainActivity : ComponentActivity() {
@@ -39,8 +40,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ConstraintSetEx() {
-    val constraintSet = ConstraintLayoutSet {
-        //
+    val constraintSet = ConstraintSet {
+        val redBox = createRefFor("redBox")
+        val magentaBox = createRefFor("magentaBox")
+        val greenBox = createRefFor("greenBox")
+        val yellowBox = createRefFor("yellowBox")
     }
 
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
