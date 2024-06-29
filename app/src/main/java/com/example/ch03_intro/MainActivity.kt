@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.ch03_intro.ui.theme.AdvancedConstraintLayoutTheme
 
@@ -64,7 +65,16 @@ fun ConstraintLayoutEx() {
                 }
         )
 
-        createVerticalChain(redBox, yellowBox, magentaBox)
+        // Step 1
+//        createVerticalChain(redBox, yellowBox, magentaBox)
+//        createHorizontalChain(redBox, yellowBox, magentaBox)
+
+        // Step 2
+        createHorizontalChain(redBox, yellowBox, magentaBox,
+            chainStyle = ChainStyle.SpreadInside
+//            chainStyle = ChainStyle.Packed
+//            chainStyle = ChainStyle.SpreadInside
+        )
     }
 }
 
