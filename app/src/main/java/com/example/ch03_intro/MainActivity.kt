@@ -31,88 +31,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.ch03_intro.ui.theme.Ch03IntroTheme
+import com.example.ch03_intro.ui.theme.Ch04ConstraintLayout
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Ch03IntroTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    ScaffoldEx()
-                }
+            Ch04ConstraintLayout {
             }
         }
     }
 }
 
-@Composable
-fun CheckboxWithContent(
-    checked: Boolean,
-    toggleState: () -> Unit,
-    content: @Composable RowScope.() -> Unit
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable { toggleState() }
-    ) {
-        Checkbox(
-            checked = checked,
-            onCheckedChange = { toggleState() }
-        )
-        content()
-    }
-}
 
 @Composable
 fun ScaffoldEx() {
-    var checked by remember { mutableStateOf(false) }
-
-    Scaffold(
-        topBar = {
-            // Step 1: 'tobBar' 를 'TopAppBar' 로 채워봅시다.
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(
-                        onClick = {}
-                    ) {
-                        Image(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "뒤로 가기"
-                        )
-                    }
-                },
-                title = { Text("Scaffold APp") }
-            )
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = {}) {
-            }
-        }
-    ) { innerPadding ->
-        Surface(
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(8.dp)
-        ) {
-            // Step 2: 아래에 CheckboxWithContent 를 넣어봅시다.
-            CheckboxWithContent(
-                checked = checked,
-                toggleState = { checked = !checked }
-            ) {
-                Text(text = "ii like compose~~")
-            }
-        }
-    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {
-    Ch03IntroTheme {
+    Ch04ConstraintLayout {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background

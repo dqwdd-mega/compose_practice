@@ -51,6 +51,9 @@ android {
 
 dependencies {
 
+    // ConstraintLayout
+    implementation(libs.constraintLayoutCompose)
+
     // coil
     implementation(libs.coil)
     implementation(libs.coil.compose)
