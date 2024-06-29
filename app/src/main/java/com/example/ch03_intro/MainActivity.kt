@@ -55,11 +55,30 @@ fun ConstraintLayoutEx() {
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Magenta)
+                .constrainAs(magentaBox) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
         )
         Box(
             modifier = Modifier
                 .size(40.dp)
                 .background(Color.Green)
+                .constrainAs(greenBox) {
+
+                    // 가운데로 오게 하고 싶다면? 아래처럼 linkTo로 사방에서 잡아당기게 하는 거 맑
+                    // centerTo를 사용해보자~
+
+//                    start.linkTo(parent.start)
+//                    end.linkTo(parent.end)
+//                    top.linkTo(parent.top)
+//                    bottom.linkTo(parent.bottom)
+
+                    centerTo(parent)
+
+//                    centerHorizontallyTo(parent)
+//                    centerVerticallyTo(parent)
+                }
         )
         Box(
             modifier = Modifier
