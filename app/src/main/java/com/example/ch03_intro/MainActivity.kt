@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -70,6 +72,15 @@ fun CanvasEx() {
             topLeft = Offset(30f, 30f),
             size = Size(10f, 10f)
         )
+
+        Icons.Filled.Send
+
+        drawLine(Color.Green, Offset(2.01f, 21.0f), Offset(23.0f, 12.0f))
+        drawLine(Color.Green, Offset(23.0f, 12.0f), Offset(2.01f, 3.0f))
+        drawLine(Color.Green, Offset(2.01f, 3.0f), Offset(2.0f, 10.0f))
+        drawLine(Color.Green, Offset(2.0f, 10.0f), Offset(17.0f, 12.0f))
+        drawLine(Color.Green, Offset(17.0f, 12.0f), Offset(2.0f, 14.0f))
+        drawLine(Color.Green, Offset(2.0f, 14.0f), Offset(2.01f, 21.0f))
     }
 }
 
