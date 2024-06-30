@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -66,7 +67,9 @@ fun CustomDialogEx() {
             Surface {
                 Column(modifier = Modifier.padding(8.dp)) {
                     Text(text = "버튼을 클릭해주세요\n +1을 누르면 값이 증가됩니다\n -1을 누르면 값이 감소합니다")
-                    Row {
+                    Row(
+                        modifier = Modifier.align(Alignment.End)
+                    ) {
                         Button(
                             onClick = {
                                 openDialog = false
