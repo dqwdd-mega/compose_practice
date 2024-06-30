@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.window.Dialog
 import com.example.ch03_intro.ui.theme.CustomDialogTheme
 
 class MainActivity : ComponentActivity() {
@@ -54,32 +55,13 @@ fun CustomDialogEx() {
     }
 
     if (openDialog) {
-        AlertDialog(
-            onDismissRequest = {
-                openDialog = false
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        openDialog = false
-                        counter++
-                    }
-                ) {
-                    Text(text = "카운터 +1 하기")
-                }
-            },
-            dismissButton = {
-                Button(onClick = { openDialog = false }) {
-                    Text(text = "취소")
-                }
-            },
-            title = {
-                Text(text = "더하기 타이틀")
-            },
-            text = {
-                Text(text = "더하기 버튼을 누르면 카운터를 증가한다\n버튼을 눌러주세요")
+        Dialog(
+            onDismissRequest = {}
+        ) {
+            Surface {
+
             }
-        )
+        }
     }
 }
 
