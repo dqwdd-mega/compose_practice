@@ -8,6 +8,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -48,6 +50,30 @@ fun DropDownMenuEx() {
             Text(text = "드롭다운 메뉴 열기")
         }
         Text(text = "카운터: $counter")
+    }
+
+    DropdownMenu(
+        expanded = expandDropDownMenu,
+        onDismissRequest = {
+            expandDropDownMenu = false
+        }
+    ) {
+        DropdownMenuItem(
+            text = {
+                Text(text = "증가")
+            },
+            onClick = {
+                counter++
+            }
+        )
+        DropdownMenuItem(
+            text = {
+                Text(text = "감소")
+            },
+            onClick = {
+                counter--
+            }
+        )
     }
 }
 
