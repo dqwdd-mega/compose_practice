@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
@@ -54,8 +55,20 @@ fun CanvasEx() {
     Canvas(modifier = Modifier.size(20.dp)) {
         drawLine(
             color = Color.Red,
-            start = Offset(0f, 0f),
-            end = Offset(0f, 0f)
+            start = Offset(30f, 10f),
+            end = Offset(50f, 40f)
+        )
+
+        drawCircle(
+            color = Color.Yellow,
+            radius = 10f,
+            center = Offset(15f, 30f)
+        )
+
+        drawRect(
+            color = Color.Magenta,
+            topLeft = Offset(30f, 30f),
+            size = Size(10f, 10f)
         )
     }
 }
