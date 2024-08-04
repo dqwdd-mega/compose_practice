@@ -22,26 +22,26 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.ch03_intro.ui.theme.SnackBarTheme
+import com.example.ch03_intro.ui.theme.BottomAppBarTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SnackBarTheme {
+            BottomAppBarTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SnackBarEx()
+                    BottomAppBarEx()
                 }
             }
         }
@@ -50,51 +50,16 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun SnackBarEx() {
-    var counter by remember { mutableStateOf(0) }
-    val snackbarHostState = remember { SnackbarHostState() }
+fun BottomAppBarEx() {
     val coroutineScope = rememberCoroutineScope()
 
-    Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
-        topBar = {
-            TopAppBar(
-                title = { Text("Snackbar Example") }
-            )
-        },
-        content = { padding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Button(onClick = {
-                    counter++
-                    coroutineScope.launch {
-                        val snackbarResult = snackbarHostState.showSnackbar(
-                            message = "Counter: $counter",
-                            duration = SnackbarDuration.Short
-                        )
 
-                        when (snackbarResult) {
-                            SnackbarResult.Dismissed -> {}
-                            SnackbarResult.ActionPerformed -> {}
-                        }
-                    }
-                }) {
-                    Text("Increase Counter")
-                }
-            }
-        }
-    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {
-    SnackBarTheme {
-        SnackBarEx()
+    BottomAppBarTheme {
+        BottomAppBarEx()
     }
 }
