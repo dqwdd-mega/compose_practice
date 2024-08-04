@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -51,9 +52,31 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun BottomAppBarEx() {
+    val snackBarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackBarHostState) },
+        bottomBar = {
+            BottomAppBar {
+                Text(text = "hello")
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            snackBarHostState.showSnackbar("hello")
+                        }
+                    }
+                ) {
+                    Text(text = "인사하기")
+                }
+            }
+        }
+    ) {
+        Text(
+            text = "Scaffold content",
+            modifier = Modifier.padding(it)
+        )
+    }
 }
 
 @Preview(showBackground = true)
